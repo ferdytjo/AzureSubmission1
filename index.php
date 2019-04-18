@@ -29,7 +29,7 @@
     $host = "ferdywebserver.database.windows.net";
     $user = "ferdy";
     $pass = "Opaopa07089!";
-    $db = "Registration";
+    $db = "ferdywebapp";
 
     try {
         $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
