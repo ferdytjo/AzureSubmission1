@@ -28,7 +28,7 @@
  <?php
     $host = "ferdywebserver.database.windows.net";
     $user = "ferdy";
-    $pass = "Opaopa07089!";
+    $pass = "A123456789!";
     $db = "ferdywebapp";
 
     try {
