@@ -13,15 +13,43 @@ $containerName = "blobferdy";
 
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
+// Create blob client.
+$blobClient = BlobRestProxy::createBlobService($connectionString);
 if (isset($_POST['submit'])) {
-	$fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
-	$content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
-	// echo fread($content, filesize($fileToUpload));
-	$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+	$createContainerOptions = new CreateContainerOptions();
+	$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+	$createContainerOptions->addMetaData("key1", "value1");
+   	$createContainerOptions->addMetaData("key2", "value2");
+	$containerName = "blobferdy".generateRandomString();;
+	
+	try {
+           // Create container.
+           $blobClient->createContainer($containerName, $createContainerOptions);
+	   
+	   $fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
+	   $content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
+	   $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+	   $listBlobsOptions = new ListBlobsOptions();
+           $listBlobsOptions->setPrefix("");
+           $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+	}
+	catch(ServiceException $e){
+           // Handle exception based on error codes and messages.
+           // Error codes and messages are here:
+           // http://msdn.microsoft.com/library/azure/dd179439.aspx
+           $code = $e->getCode();
+           $error_message = $e->getMessage();
+           echo $code.": ".$error_message."<br />";
+       }
+       catch(InvalidArgumentTypeException $e){
+           // Handle exception based on error codes and messages.
+           // Error codes and messages are here:
+           // http://msdn.microsoft.com/library/azure/dd179439.aspx
+           $code = $e->getCode();
+           $error_message = $e->getMessage();
+           echo $code.": ".$error_message."<br />";
+       }
 }
-$listBlobsOptions = new ListBlobsOptions();
-$listBlobsOptions->setPrefix("");
-$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 ?>
 
 <!DOCTYPE html>
