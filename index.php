@@ -12,9 +12,12 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=ferdystorage;Acc
 
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
-
 if (isset($_POST['submit'])) {
-	$containerName = "blobferdy";
+	$createContainerOptions = new CreateContainerOptions();
+	$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+	$createContainerOptions->addMetaData("key1", "value1");
+   	$createContainerOptions->addMetaData("key2", "value2");
+	$containerName = "blobferdy".generateRandomString();;
 	
 	try {
            // Create container.
@@ -23,6 +26,9 @@ if (isset($_POST['submit'])) {
 	   $fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
 	   $content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
 	   $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+	   $listBlobsOptions = new ListBlobsOptions();
+           $listBlobsOptions->setPrefix("");
+           $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 	}
 	catch(ServiceException $e){
            // Handle exception based on error codes and messages.
@@ -41,9 +47,6 @@ if (isset($_POST['submit'])) {
            echo $code.": ".$error_message."<br />";
        }
 }
-$listBlobsOptions = new ListBlobsOptions();
-$listBlobsOptions->setPrefix("");
-$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 ?>
 
 <!DOCTYPE html>
