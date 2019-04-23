@@ -25,6 +25,7 @@ $listBlobsOptions->setPrefix("");
 $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 ?>
 
+<!DOCTYPE html>
 <html>
  <head>
  <Title>Submission 2</Title>
@@ -46,39 +47,39 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
  <h1>Upload here!</h1>
  <form method="post" action="index.php" enctype="multipart/form-data" >
        Pilih File  <input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png" required=""></br></br>
-       <input type="submit" name="submit" value="Submit" />
+       <input type="submit" name="submit" value="Upload" />
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <table>
-			<thead>
-				<tr>
-					<th>File Name</th>
-					<th>URL</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				do {
-					foreach ($result->getBlobs() as $blob)
-					{
-						?>
-						<tr>
-							<td><?php echo $blob->getName() ?></td>
-							<td><?php echo $blob->getUrl() ?></td>
-							<td>
-								<form action="computervision.php" method="post">
-									<input type="hidden" name="url" value="<?php echo $blob->getUrl()?>">
-									<input type="submit" name="submit" value="Analyze">
-								</form>
-							</td>
-						</tr>
-						<?php
-					}
-					$listBlobsOptions->setContinuationToken($result->getContinuationToken());
-				} while($result->getContinuationToken());
+	<thead>
+	   <tr>
+	      <th>File Name</th>
+	      <th>URL</th>
+	      <th>Action</th>
+	   </tr>
+	</thead>
+	<tbody>
+		<?php
+		do {
+			foreach ($result->getBlobs() as $blob)
+			{
 				?>
-			</tbody>
-		</table>
+				<tr>
+					<td><?php echo $blob->getName() ?></td>
+					<td><?php echo $blob->getUrl() ?></td>
+					<td>
+						<form action="computervision.php" method="post">
+							<input type="hidden" name="url" value="<?php echo $blob->getUrl()?>">
+							<input type="submit" name="submit" value="Analyze">
+						</form>
+					</td>
+				</tr>
+				<?php
+			}
+			$listBlobsOptions->setContinuationToken($result->getContinuationToken());
+		} while($result->getContinuationToken());
+		?>
+	</tbody>
+	</table>
  </body>
  </html>
