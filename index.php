@@ -59,26 +59,26 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 	   </tr>
 	</thead>
 	<tbody>
-		<?php
-		do {
-			foreach ($result->getBlobs() as $blob)
-			{
-				?>
-				<tr>
-					<td><?php echo $blob->getName() ?></td>
-					<td><?php echo $blob->getUrl() ?></td>
-					<td>
-						<form action="computervision.php" method="post">
-							<input type="hidden" name="url" value="<?php echo $blob->getUrl()?>">
-							<input type="submit" name="submit" value="Analyze">
-						</form>
-					</td>
-				</tr>
-				<?php
-			}
-			$listBlobsOptions->setContinuationToken($result->getContinuationToken());
-		} while($result->getContinuationToken());
+	   <?php
+	   do {
+              foreach ($result->getBlobs() as $blob)
+	      {
 		?>
+		<tr>
+		   <td><?php echo $blob->getName() ?></td>
+		   <td><?php echo $blob->getUrl() ?></td>
+		   <td>
+		      <form action="computervision.php" method="post">
+			<input type="hidden" name="url" value="<?php echo $blob->getUrl()?>">
+			<input type="submit" name="submit" value="Analyze">
+		      </form>
+		   </td>
+		</tr>
+		<?php
+	      }
+	      $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+	   } while($result->getContinuationToken());
+	   ?>
 	</tbody>
 	</table>
  </body>
