@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 	$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 	$createContainerOptions->addMetaData("key1", "value1");
    	$createContainerOptions->addMetaData("key2", "value2");
-	$containerName = "blobferdy".generateRandomString();;
+	$containerName = "blobferdy";
 	
 	try {
            // Create container.
