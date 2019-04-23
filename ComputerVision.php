@@ -65,6 +65,7 @@ if (isset($_POST['submit'])) {
         .done(function(data) {
             // Show formatted JSON on webpage.
             $("#responseTextArea").val(JSON.stringify(data, null, 2));
+	    $("#description").text(data.description.captions[0].text);
         })
 
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -78,14 +79,6 @@ if (isset($_POST['submit'])) {
     };
 </script>
 
-<h1>Analyze image:</h1>
-Enter the URL to an image, then click the <strong>Analyze image</strong> button.
-<br><br>
-Image to analyze:
-<input type="text" name="inputImage" id="inputImage"
-    value="http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg" />
-<button onclick="processImage()">Analyze image</button>
-<br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
         Response:
@@ -97,6 +90,8 @@ Image to analyze:
         Source image:
         <br><br>
         <img id="sourceImage" width="400" />
+        <br>
+	<h3 id="description">Loading description. . .</h3>
     </div>
 </div>
 </body>
