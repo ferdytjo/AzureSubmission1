@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 <body>
 
 <script type="text/javascript">
-    function processImage() {
+    $(document).ready(function () {
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
