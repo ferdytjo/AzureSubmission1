@@ -76,7 +76,6 @@ if (isset($_POST['submit'])) {
  <form method="post" action="index.php" enctype="multipart/form-data" >
        Pilih File  <input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png" required=""></br></br>
        <input type="submit" name="submit" value="Upload" />
-       <input type="submit" name="load_data" value="Load Data" />
  </form>
  <table>
 	<thead>
