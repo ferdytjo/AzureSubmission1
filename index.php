@@ -26,9 +26,6 @@ if (isset($_POST['submit'])) {
 	   
 	   $fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
 	   $content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
-	   echo "Uploading BlockBlob: ".PHP_EOL;
-           echo $fileToUpload;
-           echo "<br />";
 	   $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 	   $listBlobsOptions = new ListBlobsOptions();
            $listBlobsOptions->setPrefix("");
