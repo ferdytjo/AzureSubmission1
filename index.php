@@ -26,9 +26,6 @@ if (isset($_POST['submit'])) {
 	   $fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
 	   $content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
 	   $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-	   $listBlobsOptions = new ListBlobsOptions();
-           $listBlobsOptions->setPrefix("");
-           $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 	}
 	catch(ServiceException $e){
            // Handle exception based on error codes and messages.
@@ -47,6 +44,9 @@ if (isset($_POST['submit'])) {
            echo $code.": ".$error_message."<br />";
        }
 }
+$listBlobsOptions = new ListBlobsOptions();
+$listBlobsOptions->setPrefix("");
+$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 ?>
 
 <!DOCTYPE html>
