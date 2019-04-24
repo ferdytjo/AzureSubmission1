@@ -25,6 +25,10 @@ if (isset($_POST['submit'])) {
 	$listBlobsOptions->setPrefix("");
 	$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 }
+$listBlobsOptions = new ListBlobsOptions();
+$listBlobsOptions->setPrefix("");
+$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +53,7 @@ if (isset($_POST['submit'])) {
  <h1>Upload here!</h1>
  <form method="post" action="index.php" enctype="multipart/form-data" >
        Pilih File  <input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png" required=""></br></br>
-       <input type="submit" name="submit" value="Upload" />
+       <input type="submit" name="submit" value="Upload">
  </form>
  
  <table>
