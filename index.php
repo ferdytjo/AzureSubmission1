@@ -66,7 +66,7 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 		   <td><?php echo $blob->getName() ?></td>
 		   <td><?php echo $blob->getUrl() ?></td>
 		   <td>
-		      <form action="computervision.php" method="post">
+		      <form action="ComputerVision.php" method="post">
 			<input type="hidden" name="url" value="<?php echo $blob->getUrl()?>">
 			<input type="submit" name="submit" value="Analyze">
 		      </form>
