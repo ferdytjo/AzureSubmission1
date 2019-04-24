@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
 } else {
 	header("Location: index.php");
 }
+?>
 
 <!DOCTYPE html>
 <html>
