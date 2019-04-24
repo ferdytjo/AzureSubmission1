@@ -14,10 +14,13 @@ $containerName = "blobferdy";
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 if (isset($_POST['submit'])) {
 	$createContainerOptions = new CreateContainerOptions();
+	$blobClient->createContainer($containerName, $createContainerOptions);
+	
    	$fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
    	$content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
    	$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 	header("Location: index.php");
+	
 	$listBlobsOptions = new ListBlobsOptions();
 	$listBlobsOptions->setPrefix("");
 	$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
