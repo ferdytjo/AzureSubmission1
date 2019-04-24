@@ -9,24 +9,18 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=ferdystorage;AccountKey=8V70e+tE4zhy9NQ6XT+V8KAHPjDHlr5f0D6vHYi6NJUOGO4Iqi3saVqArFqMMAL96m1uzTpFaSh7EwCDcr2bBw==";
-$containerName1 = "blobferdy";
+$containerName = "blobferdy";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 if (isset($_POST['submit'])) {
-	$createContainerOptions = new CreateContainerOptions();
-	$containerName = "blobferdy".generateRandomString();
-	$blobClient->createContainer($containerName, $createContainerOptions);
-	
    	$fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
    	$content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
    	$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 	header("Location: index.php");
-	
-	
 }
 $listBlobsOptions = new ListBlobsOptions();
 $listBlobsOptions->setPrefix("");
-$result = $blobClient->listBlobs($containerName1, $listBlobsOptions);
+$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 ?>
 
 <!DOCTYPE html>
