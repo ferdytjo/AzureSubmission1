@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 <body>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    function processImage() {
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -83,6 +83,12 @@ if (isset($_POST['submit'])) {
     };
 </script>
 
+Image to analyze:
+<input type="text" name="inputImage" id="inputImage"
+    value=""<?php echo $url ?>" />
+<button onclick="processImage()">Analyze image</button>
+<br><br>
+	
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
         Response:
