@@ -19,30 +19,13 @@ if (isset($_POST['submit'])) {
    	$createContainerOptions->addMetaData("key2", "value2");
 	header("Location: index.php");
 	
-	try {
-           // Create container.
-           $blobClient->createContainer($containerName, $createContainerOptions);
-	   
-	   $fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
-	   $content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
-	   $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-	}
-	catch(ServiceException $e){
-           // Handle exception based on error codes and messages.
-           // Error codes and messages are here:
-           // http://msdn.microsoft.com/library/azure/dd179439.aspx
-           $code = $e->getCode();
-           $error_message = $e->getMessage();
-           echo $code.": ".$error_message."<br />";
-       }
-       catch(InvalidArgumentTypeException $e){
-           // Handle exception based on error codes and messages.
-           // Error codes and messages are here:
-           // http://msdn.microsoft.com/library/azure/dd179439.aspx
-           $code = $e->getCode();
-           $error_message = $e->getMessage();
-           echo $code.": ".$error_message."<br />";
-       }
+   	// Create container.
+ 	$blobClient->createContainer($containerName, $createContainerOptions);
+
+   	$fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
+   	$content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
+   	$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+	
 }
 $listBlobsOptions = new ListBlobsOptions();
 $listBlobsOptions->setPrefix("");
