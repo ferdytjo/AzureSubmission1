@@ -13,6 +13,7 @@ $containerName = "blobferdy";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 if (isset($_POST['submit'])) {
+	$createContainerOptions = new CreateContainerOptions();
    	$fileToUpload = strtolower($_FILES["fileToUpload"]["name"]);
    	$content = fopen($_FILES["fileToUpload"]["tmp_name"], "r");
    	$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
