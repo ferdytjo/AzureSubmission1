@@ -84,13 +84,6 @@ if (isset($_POST['submit'])) {
 </script>
 
 <h1>Analyze image:</h1>
-Enter the URL to an image, then click the <strong>Analyze image</strong> button.
-<br><br>
-Image to analyze:
-<input type="text" name="inputImage" id="inputImage"
-    value="<?php echo $url ?>" />
-<button onclick="processImage()">Analyze image</button>
-<br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
         Response:
@@ -103,7 +96,7 @@ Image to analyze:
         <br><br>
         <img id="sourceImage" width="400" />
         <br>
-		<h3 id="description">Loading description. . .</h3>
+	<h3 id="description">Loading description. . .</h3>
     </div>
 </div>
 </body>
