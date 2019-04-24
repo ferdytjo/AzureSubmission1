@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         };
 
         // Display the image.
-        var sourceImageUrl = "<?php echo $url ?>";
+        var sourceImageUrl = document.getElementById("inputImage").value;
         document.querySelector("#sourceImage").src = sourceImageUrl;
 
         // Make the REST API call.
