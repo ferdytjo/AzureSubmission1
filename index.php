@@ -9,6 +9,7 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=ferdystorage;AccountKey=8V70e+tE4zhy9NQ6XT+V8KAHPjDHlr5f0D6vHYi6NJUOGO4Iqi3saVqArFqMMAL96m1uzTpFaSh7EwCDcr2bBw==";
+$containerName = "blobferdy".generateRandomString();
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 if (isset($_POST['submit'])) {
@@ -16,7 +17,6 @@ if (isset($_POST['submit'])) {
 	$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 	$createContainerOptions->addMetaData("key1", "value1");
    	$createContainerOptions->addMetaData("key2", "value2");
-	$containerName = "blobferdy".generateRandomString();;
 	header("Location: index.php");
 	
 	try {
