@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     <title>Analyze Image</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
-<body>
+<body onload="processImage();">
 
 <script type="text/javascript">
     function processImage() {
@@ -86,12 +86,7 @@ if (isset($_POST['submit'])) {
 <h1>Analyze image:</h1>
 Image to analyze:
 <input type="text" name="inputImage" id="inputImage"
-    value="<?php echo $url ?>" 
-       <script type="text/javascript">
-    	processImage();
-       </script>
-/>
-
+    value="<?php echo $url ?>"/>
 <br><br>
 	
 <div id="wrapper" style="width:1020px; display:table;">
