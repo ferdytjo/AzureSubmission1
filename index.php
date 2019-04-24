@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
        Pilih File  <input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png" required=""></br></br>
        <input type="submit" name="submit" value="Upload" />
  </form>
- //<h4>Total Files : <?php echo sizeof($result->getBlobs())?></h4>
+ 
  <table>
 	<thead>
 	   <tr>
