@@ -56,7 +56,7 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
        <input type="submit" name="submit" value="Upload">
  </form>
  
- <table>
+ <table class='table table-hover'>
 	<thead>
 	   <tr>
 	      <th>File Name</th>
