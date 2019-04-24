@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 <body>
 
 <script type="text/javascript">
-    $(document).ready(function ()
+    function processImage() {
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         };
 
         // Display the image.
-        var sourceImageUrl = "<?php echo $url ?>";
+        var sourceImageUrl = document.getElementById("inputImage").value;
         document.querySelector("#sourceImage").src = sourceImageUrl;
 
         // Make the REST API call.
@@ -84,6 +84,14 @@ if (isset($_POST['submit'])) {
 </script>
 
 <h1>Analyze image:</h1>
+Image to analyze:
+<input type="text" name="inputImage" id="inputImage"
+    value="<?php echo $url ?>" />
+<script type="text/javascript">
+    processImage();
+</script>
+<br><br>
+	
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
         Response:
